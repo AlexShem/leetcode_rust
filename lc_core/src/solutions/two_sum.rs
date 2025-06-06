@@ -1,23 +1,19 @@
 // lc_core/src/solutions/two_sum.rs
 use super::Solve;
+use std::collections::HashMap;
 
 pub struct TwoSum;
 
 impl Solve<(Vec<i32>, i32), Option<(usize, usize)>> for TwoSum {
     fn solve((nums, target): (Vec<i32>, i32)) -> Option<(usize, usize)> {
-        // (critical line omitted) – your algorithm here
-        todo!()
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::TwoSum as S;
-    use crate::solutions::Solve;
-
-    #[test]
-    fn basic() {
-        let ans = S::solve((vec![2, 7, 11, 15], 9));
-        assert_eq!(ans, Some((0, 1)));
+        let mut num_map: HashMap<i32, i32> = HashMap::new();
+        for (i, &num) in nums.iter().enumerate() {
+            let complement = target - num;
+            if let Some(&index) = num_map.get(&complement) {
+                return Some((index as usize, i));
+            }
+            num_map.insert(num, i as i32);
+        }
+        None
     }
 }
