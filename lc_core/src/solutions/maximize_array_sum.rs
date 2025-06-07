@@ -5,21 +5,24 @@ pub struct MaximizeArraySum;
 
 impl MaximizeArraySum {
     // LeetCode style solution
-    pub fn maximize_sum(nums: Vec<i32>, mut k: i32) -> i32 {
+    pub fn maximize_sum(nums: Vec<i32>, k: i32) -> i32 {
         let mut nums = nums;
-        nums.sort();
-        let n = nums.len();
+        nums.sort_unstable();
 
-        for i in 0..n {
-            if nums[i] < 0 && k > 0 {
-                nums[i] = -nums[i];
-                k -= 1;
+        let mut remaining_ops = k;
+        for num in nums.iter_mut() {
+            if *num < 0 && remaining_ops > 0 {
+                *num = -*num;
+                remaining_ops -= 1;
             }
         }
 
-        nums.sort();
-        if k > 0 && k % 2 != 0 {
-            nums[0] = -nums[0];
+        if remaining_ops > 0 && remaining_ops % 2 != 0 {
+            let min_idx = nums.iter().enumerate()
+                .min_by_key(|&(_, val)| val)
+                .map(|(idx, _)| idx)
+                .unwrap_or(0);
+            nums[min_idx] = -nums[min_idx];
         }
 
         nums.iter().sum()
