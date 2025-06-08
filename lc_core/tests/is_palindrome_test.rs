@@ -20,3 +20,10 @@ fn test_3() {
     let expected = false;
     assert_eq!(S::solve(num), expected);
 }
+
+#[test]
+fn test_4() {
+    let num = 132231;
+    let expected = true;
+    assert_eq!(S::solve(num), expected);
+}
