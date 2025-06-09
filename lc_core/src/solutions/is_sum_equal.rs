@@ -3,29 +3,27 @@ use super::Solve;
 pub struct IsSumEqual;
 
 impl IsSumEqual {
-    fn word_to_number(word: &String) -> i32 {
+    fn word_to_number(word: &String) -> Option<i32> {
+        if !word.chars().all(|ch| ('a'..='j').contains(&ch)) {
+            return None;
+        }
         let number: String = word
             .chars()
-            .map(|ch| {
-                if ch >= 'a' && ch <= 'j' {
-                    ((ch as u8 - b'a') + b'0') as char
-                } else {
-                    ch
-                }
-            })
+            .map(|ch| ((ch as u8 - b'a') + b'0') as char)
             .collect();
-        number.parse().expect("Cannot parse the string to number.")
+        number.parse::<i32>().ok()
     }
     pub fn is_sum_equal(first_word: String, second_word: String, target_word: String) -> bool {
-        let first_num = Self::word_to_number(&first_word);
-        let second_num = Self::word_to_number(&second_word);
-        let target_num = Self::word_to_number(&target_word);
-
-        if first_num + second_num == target_num {
-            true
-        } else {
-            false
-        }
+        Self::word_to_number(&first_word)
+            .and_then(|first_num| {
+                Self::word_to_number(&second_word)
+                    .map(|second_num| (first_num, second_num))
+            })
+            .and_then(|(first_num, second_num)| {
+                Self::word_to_number(&target_word)
+                    .map(|target_num| first_num + second_num == target_num)
+            })
+            .unwrap_or(false)
     }
 }
 
