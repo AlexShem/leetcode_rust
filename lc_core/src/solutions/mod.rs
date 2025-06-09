@@ -4,6 +4,7 @@ pub mod is_palindrome;
 pub mod is_ugly;
 pub mod is_sum_equal;
 pub mod minimum_average;
+pub mod hamming_distance;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
