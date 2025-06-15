@@ -10,6 +10,7 @@ pub mod xor_operation;
 pub mod remove_digit;
 pub mod merge_two_lists;
 pub mod largest_integer;
+pub mod count_asterisks;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
