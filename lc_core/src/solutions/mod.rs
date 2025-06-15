@@ -9,6 +9,7 @@ pub mod reverse_string;
 pub mod xor_operation;
 pub mod remove_digit;
 pub mod merge_two_lists;
+pub mod largest_integer;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
