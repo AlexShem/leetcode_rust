@@ -16,6 +16,7 @@ pub mod make_good;
 pub mod count_balls;
 pub mod check_distances;
 pub mod find_x_sum;
+pub mod max_height_of_triangle;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
