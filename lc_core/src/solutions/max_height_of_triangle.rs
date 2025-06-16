@@ -13,36 +13,24 @@ pub struct MaxHeightOfTriangle;
 
 impl MaxHeightOfTriangle {
     pub fn max_height_of_triangle(red: i32, blue: i32) -> i32 {
-        Self::construct_triangle(red, blue, true)
-            .max(Self::construct_triangle(red, blue, false))
+        Self::construct_triangle(red, blue)
+            .max(Self::construct_triangle(blue, red))
     }
 
     /// Determine the max height of a triangle
-    /// with the first row being **blue** if `row_blue` is `true`,
-    /// and with the first row being **red** otherwise.
-    fn construct_triangle(mut red: i32, mut blue: i32, mut row_blue: bool) -> i32 {
+    /// with the first row being `num_1`.
+    fn construct_triangle(mut num_1: i32, mut num_2: i32) -> i32 {
         let mut height = 0;
-        loop {
-            match row_blue {
-                true => {
-                    if height + 1 <= blue {
-                        height += 1;
-                        blue -= height;
-                        row_blue = !row_blue
-                    } else {
-                        break;
-                    }
-                }
-                false => {
-                    if height + 1 <= red {
-                        height += 1;
-                        red -= height;
-                        row_blue = !row_blue;
-                    } else {
-                        break;
-                    }
-                }
+        for i in 1.. {
+            if i & 1 == 1 {
+                num_1 -= i;
+            } else {
+                num_2 -= i;
             }
+            if num_1 < 0 || num_2 < 0 {
+                break;
+            }
+            height += 1;
         }
         height
     }
