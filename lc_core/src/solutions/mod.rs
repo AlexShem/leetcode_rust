@@ -15,6 +15,7 @@ pub mod nearest_valid_point;
 pub mod make_good;
 pub mod count_balls;
 pub mod check_distances;
+pub mod find_x_sum;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
