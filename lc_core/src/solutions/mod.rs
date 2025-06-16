@@ -12,6 +12,7 @@ pub mod merge_two_lists;
 pub mod largest_integer;
 pub mod count_asterisks;
 pub mod nearest_valid_point;
+pub mod make_good;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
