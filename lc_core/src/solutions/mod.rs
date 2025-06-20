@@ -18,6 +18,7 @@ pub mod check_distances;
 pub mod find_x_sum;
 pub mod max_height_of_triangle;
 pub mod pick_gifts;
+pub mod is_possible_to_split;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
