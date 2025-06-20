@@ -24,22 +24,6 @@ pub struct Bitset {
     ones_count: usize,
 }
 
-
-/**
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
-/**
- * Your Bitset object will be instantiated and called as such:
- * let obj = Bitset::new(size);
- * obj.fix(idx);
- * obj.unfix(idx);
- * obj.flip();
- * let ret_4: bool = obj.all();
- * let ret_5: bool = obj.one();
- * let ret_6: i32 = obj.count();
- * let ret_7: String = obj.to_string();
- */
 impl Bitset {
     pub fn new(size: i32) -> Self {
         let size = size as usize;
@@ -74,6 +58,7 @@ impl Bitset {
         }
     }
 
+    /// Updates the value of the bit at the index `idx` to `0`. If the value was already `0`, no change occurs.
     pub fn unfix(&mut self, idx: i32) {
         let idx = idx as usize;
         let block_idx = idx / 64;
@@ -95,23 +80,28 @@ impl Bitset {
         }
     }
 
+    /// Flips the values of each bit in the Bitset. In other words, all bits with value `0` will now have value `1` and vice versa.
     pub fn flip(&mut self) {
         self.flipped = !self.flipped;
         self.ones_count = self.size - self.ones_count;
     }
 
+    /// Checks if the value of each bit in the Bitset is `1`. Returns `true` if it satisfies the condition, `false` otherwise.
     pub fn all(&self) -> bool {
         self.ones_count == self.size
     }
 
+    /// Checks if there is at least one bit in the Bitset with value `1`. Returns `true` if it satisfies the condition, `false` otherwise.
     pub fn one(&self) -> bool {
         self.ones_count > 0
     }
 
+    /// Returns the total number of bits in the Bitset which have value `1`.
     pub fn count(&self) -> i32 {
         self.ones_count as i32
     }
 
+    /// Returns the current composition of the Bitset. Note that in the resultant string, the character at the `ith` index should coincide with the value at the `ith` bit of the Bitset.
     pub fn to_string(&self) -> String {
         let mut res = String::with_capacity(self.size);
 
