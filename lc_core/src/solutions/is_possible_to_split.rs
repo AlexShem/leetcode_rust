@@ -14,17 +14,12 @@ pub struct IsPossibleToSplit;
 
 impl IsPossibleToSplit {
     pub fn is_possible_to_split(nums: Vec<i32>) -> bool {
-        let mut seen: HashMap<i32, i32> = HashMap::with_capacity(nums.len());
+        let mut freq_map: HashMap<i32, i32> = HashMap::with_capacity(nums.len());
         for num in nums {
-            if !seen.contains_key(&num) {
-                seen.insert(num, 1);
-            } else {
-                if let Some(val) = seen.get(&num) {
-                    match val {
-                        1 => seen.entry(num).and_modify(|v| *v += 1).or_insert(2),
-                        _ => return false
-                    };
-                }
+            *freq_map.entry(num).or_insert(0) += 1;
+
+            if freq_map[&num] > 2 {
+                return false;
             }
         }
         true
