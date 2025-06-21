@@ -20,6 +20,7 @@ pub mod max_height_of_triangle;
 pub mod pick_gifts;
 pub mod is_possible_to_split;
 pub mod bitset;
+pub mod top_k_frequent;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
