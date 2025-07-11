@@ -23,6 +23,7 @@ pub mod bitset;
 pub mod top_k_frequent;
 pub mod min_end;
 pub mod day_of_year;
+pub mod shortest_completing_word;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
