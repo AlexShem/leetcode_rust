@@ -17,11 +17,17 @@ pub struct ShortestCompletingWord;
 impl ShortestCompletingWord {
     pub fn shortest_completing_word(license_plate: String, words: Vec<String>) -> String {
         let letters_count = Self::letter_count(&license_plate);
+        let min_possible_len = letters_count.values().sum::<u32>() as usize;
 
         let mut shortest_idx: usize = 0;
         let mut shortest_len = usize::MAX;
 
         'outer: for (idx, word) in words.iter().enumerate() {
+            let word_len = word.len();
+            if word_len >= shortest_len {
+                continue;
+            }
+
             let word_letter_count = Self::letter_count(word);
             for key in letters_count.keys() {
                 if let Some(value) = word_letter_count.get(key) {
@@ -32,24 +38,21 @@ impl ShortestCompletingWord {
                     continue 'outer;
                 }
             }
-            let word_len = word.len();
-            if word_len < shortest_len {
-                shortest_idx = idx;
-                shortest_len = word_len;
+            shortest_idx = idx;
+            shortest_len = word_len;
+            if shortest_len == min_possible_len {
+                break;
             }
         }
-
         words[shortest_idx].clone()
     }
 
     fn letter_count(word: &String) -> HashMap<char, u32> {
-        let word = word.to_lowercase();
-        let mut letters_count: HashMap<char, u32> = HashMap::with_capacity(word.len());
+        let mut letters_count: HashMap<char, u32> = HashMap::new();
         for ch in word.chars() {
-            if ch.is_alphabetic() {
-                letters_count.entry(ch).and_modify(|counter| *counter += 1).or_insert(1);
-            } else {
-                continue;
+            if ch.is_ascii_alphabetic() {
+                let ch = ch.to_ascii_lowercase();
+                *letters_count.entry(ch).or_insert(0) += 1;
             }
         }
         letters_count
