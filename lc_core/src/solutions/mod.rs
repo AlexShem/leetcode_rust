@@ -25,6 +25,7 @@ pub mod min_end;
 pub mod day_of_year;
 pub mod shortest_completing_word;
 pub mod largest_good_integer;
+pub mod int_to_roman;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
