@@ -27,6 +27,7 @@ pub mod shortest_completing_word;
 pub mod largest_good_integer;
 pub mod int_to_roman;
 pub mod add_two_numbers;
+pub mod check_straight_line;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
