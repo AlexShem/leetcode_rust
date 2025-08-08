@@ -29,6 +29,7 @@ pub mod int_to_roman;
 pub mod add_two_numbers;
 pub mod check_straight_line;
 pub mod sum_four_divisors;
+pub mod length_of_longest_substring;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
