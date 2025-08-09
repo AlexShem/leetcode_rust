@@ -31,6 +31,7 @@ pub mod check_straight_line;
 pub mod sum_four_divisors;
 pub mod length_of_longest_substring;
 pub mod repeat_limited_string;
+pub mod is_power_of_two;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
