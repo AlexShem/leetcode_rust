@@ -37,6 +37,7 @@ pub mod best_coordinate;
 pub mod reordered_power_of2;
 pub mod is_match;
 pub mod judge_circle;
+pub mod decode_ciphertext;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
