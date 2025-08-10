@@ -34,6 +34,7 @@ pub mod repeat_limited_string;
 pub mod is_power_of_two;
 pub mod complex_number_multiply;
 pub mod best_coordinate;
+pub mod reordered_power_of2;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
