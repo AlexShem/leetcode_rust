@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use super::Solve;
+use std::collections::HashMap;
 
 pub struct ReorderedPowerOf2;
 
@@ -22,14 +22,12 @@ impl ReorderedPowerOf2 {
             let frequencies = Self::frequency_table(&number);
 
             if frequencies.len() == n_frequencies.len() {
-                let matched_frequencies: bool = n_frequencies
-                    .iter()
-                    .all(|(digit, count)| {
-                        if frequencies.contains_key(digit) && frequencies[digit] == *count {
-                            return true;
-                        }
-                        false
-                    });
+                let matched_frequencies: bool = n_frequencies.iter().all(|(digit, count)| {
+                    if frequencies.contains_key(digit) && frequencies[digit] == *count {
+                        return true;
+                    }
+                    false
+                });
                 if matched_frequencies {
                     return true;
                 }
@@ -44,7 +42,10 @@ impl ReorderedPowerOf2 {
         let mut frequencies = HashMap::with_capacity(10);
         let digits = Self::number_digits(&number);
         for digit in digits {
-            frequencies.entry(digit).and_modify(|d| *d += 1).or_insert(1);
+            frequencies
+                .entry(digit)
+                .and_modify(|d| *d += 1)
+                .or_insert(1);
         }
         frequencies
     }
