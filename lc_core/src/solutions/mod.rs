@@ -33,6 +33,7 @@ pub mod length_of_longest_substring;
 pub mod repeat_limited_string;
 pub mod is_power_of_two;
 pub mod complex_number_multiply;
+pub mod best_coordinate;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
