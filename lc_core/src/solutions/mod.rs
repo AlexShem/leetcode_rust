@@ -38,6 +38,7 @@ pub mod reordered_power_of2;
 pub mod is_match;
 pub mod judge_circle;
 pub mod decode_ciphertext;
+pub mod longest_common_prefix;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
