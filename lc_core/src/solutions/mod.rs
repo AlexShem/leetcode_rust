@@ -39,6 +39,7 @@ pub mod is_match;
 pub mod judge_circle;
 pub mod decode_ciphertext;
 pub mod longest_common_prefix;
+pub mod k_closest;
 
 pub trait Solve<I, O> {
     fn solve(input: I) -> O;
